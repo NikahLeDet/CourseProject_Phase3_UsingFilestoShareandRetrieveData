@@ -23,7 +23,6 @@ def CalcTaxAndNetPay(hours, hourlyrate, taxrate):
     incometax = grosspay * taxrate
     netpay = grosspay - incometax
     return grosspay, incometax, netpay
-
 def printinfo(DetailsPrinted):
     TotEmployees = 0
     TotHours = 0.00
@@ -31,7 +30,7 @@ def printinfo(DetailsPrinted):
     TotTax = 0.00
     TotNetPay = 0.00
     
-    EmpFile = open ("Employees.txt", "r")
+    EmpFile = open("Employees.txt", "r")
     while True:
         rundate = input ("Enter start date for report (MM/DD/YYYY) or All for all data in file: ")
         if (rundate.upper() == "ALL"):
@@ -72,10 +71,7 @@ def printinfo(DetailsPrinted):
         EmpTotals["TotTax"] = TotTax
         EmpTotals["TotNetPay"] = TotNetPay
         DetailsPrinted = True   
-    if (DetailsPrinted):  #skip of no detail lines printed
-        PrintTotals (EmpTotals)
-    else:
-        print("No detail information to print")
+   
 def PrintTotals(EmpTotals):    
     print()
     print(f'Total Number Of Employees: {EmpTotals["TotEmp"]}')
@@ -83,7 +79,6 @@ def PrintTotals(EmpTotals):
     print(f'Total Gross Pay: {EmpTotals["TotGrossPay"]:,.2f}')
     print(f'Total Income Tax:  {EmpTotals["TotTax"]:,.2f}')
     print(f'Total Net Pay: {EmpTotals["TotNetPay"]:,.2f}')
- 
 
 if __name__ == "__main__":
     EmpFile = open("Employees.txt", "a+")
@@ -97,19 +92,14 @@ if __name__ == "__main__":
         hours = GetHoursWorked()
         hourlyrate = GetHourlyRate()
         taxrate = GetTaxRate()
-        EmpDetail = fromdate + "|" + empname + "|" + str(hourlyrate) + "|" + str(taxrate) + "\n"
+        EmpDetail = fromdate + "|" + todate + "|" + empname + "|" + str(hours) + "|" + str(hourlyrate) + "|" + str(taxrate) + "\n"
         EmpFile.close()
         DetailsPrinted = False
-        printinfo()
+        printinfo(DetailsPrinted)
         if (DetailsPrinted):
-            PrintTotals (EmpTotals)
+           PrintTotals (EmpTotals)
         else:
             print("No detail information to print")
-
-    printinfo(DetailsPrinted)
-
-
-
 ####################################################################
 
 
